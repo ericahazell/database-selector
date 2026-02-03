@@ -3,333 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Research Database</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Database Mission Control 🚀</title>
     <style>
-        :root {
-            --primary: #1a4d2e;
-            --secondary: #2d6a4f;
-            --accent: #c17c00;
-            --bg: #faf9f6;
-            --text: #2b2b2b;
-            --card: #ffffff;
-            --border: #d4d1c6;
-            --highlight: #fff8e7;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes rocket {
+            0% { transform: translateX(0) rotate(-45deg); }
+            100% { transform: translateX(5px) rotate(-45deg); }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Work Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 85%, white, transparent),
+                radial-gradient(2px 2px at 15% 95%, white, transparent);
+            background-size: 200% 200%;
+            background-position: 0% 0%;
+            color: #e4e4e4;
             line-height: 1.6;
-            padding: 2rem 1rem;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
-        
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            z-index: -1;
+        }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
-            animation: fadeIn 0.6s ease-out;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 3px solid var(--primary);
-        }
-        
+
         h1 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(138, 193, 255, 0.5);
+            animation: float 3s ease-in-out infinite;
         }
-        
+
         .subtitle {
-            font-size: 1.1rem;
-            color: var(--secondary);
+            font-size: 1.4rem;
+            color: #8ac1ff;
+            text-align: center;
+            margin-bottom: 60px;
             font-weight: 400;
         }
-        
-        h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin: 2.5rem 0 1.5rem;
-            font-weight: 600;
+
+        .mission-patch {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
         }
-        
-        h3 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.3rem;
-            color: var(--secondary);
-            margin: 1.5rem 0 1rem;
-            font-weight: 600;
+
+        .scenario {
+            background: linear-gradient(135deg, rgba(26, 35, 53, 0.9), rgba(15, 52, 96, 0.7));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(138, 193, 255, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 35px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .scenario-card {
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            animation: slideIn 0.5s ease-out backwards;
+
+        .scenario::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(138, 193, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        
-        .scenario-card:nth-child(1) { animation-delay: 0.1s; }
-        .scenario-card:nth-child(2) { animation-delay: 0.2s; }
-        .scenario-card:nth-child(3) { animation-delay: 0.3s; }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+
+        .scenario:hover::before {
+            opacity: 1;
         }
-        
-        .scenario-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(193, 124, 0, 0.15);
-            transform: translateX(4px);
+
+        .scenario:hover {
+            background: linear-gradient(135deg, rgba(36, 45, 63, 0.95), rgba(25, 62, 116, 0.85));
+            border-color: rgba(138, 193, 255, 0.6);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 40px rgba(138, 193, 255, 0.3);
         }
-        
-        .scenario-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
+
+        .scenario-header {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
         }
-        
+
+        .emoji {
+            font-size: 2.2rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .scenario-description {
+            font-size: 1.15rem;
+            color: #d4d4d4;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
         .database-link {
             display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
             text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            margin: 0.5rem 0.5rem 0.5rem 0;
-            transition: all 0.2s ease;
-        }
-        
-        .database-link:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(193, 124, 0, 0.3);
-        }
-        
-        .database-options {
-            margin-top: 1rem;
-            padding-left: 1.5rem;
-        }
-        
-        .database-item {
-            margin: 0.5rem 0;
-        }
-        
-        .database-item strong {
-            color: var(--secondary);
-        }
-        
-        .search-guide {
-            background: var(--highlight);
-            border-left: 4px solid var(--accent);
-            padding: 2rem;
-            margin: 2.5rem 0;
-            border-radius: 4px;
-        }
-        
-        .operator {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 3px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            margin: 10px 10px 10px 0;
             font-weight: 600;
-            font-size: 0.9rem;
-            margin: 0 0.2rem;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
         }
-        
-        .example {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            color: var(--secondary);
+
+        .database-link:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateX(10px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
         }
-        
+
+        .database-link::after {
+            content: " →";
+            font-size: 1.3em;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .database-link:hover::after {
+            animation: rocket 0.5s ease infinite;
+        }
+
+        .note {
+            font-size: 1rem;
+            color: #8ac1ff;
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: rgba(138, 193, 255, 0.1);
+            border-left: 4px solid #8ac1ff;
+            border-radius: 8px;
+            position: relative;
+        }
+
         .warning {
-            background: #fff4e6;
-            border-left: 4px solid #d97706;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border-radius: 4px;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.1));
+            border: 2px solid rgba(255, 193, 7, 0.5);
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin: 25px 0;
+            color: #fff;
+            font-size: 1.05rem;
         }
-        
+
         .warning strong {
-            color: #d97706;
+            color: #ffd93d;
+            font-size: 1.1rem;
         }
-        
-        .template-box {
-            background: var(--card);
-            border: 2px dashed var(--accent);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 4px;
+
+        .blast-off {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
-        
-        .template-box h3 {
-            margin-top: 0;
-            color: var(--accent);
+
+        .blast-off:hover {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
         }
-        
-        .copy-template {
-            background: white;
-            padding: 1rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            margin: 1rem 0;
-            border: 1px solid var(--border);
-            font-size: 0.95rem;
+
+        .quick-link {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
-        
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--border);
-            text-align: center;
-            color: var(--secondary);
-            font-size: 0.9rem;
+
+        .quick-link:hover {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
         }
-        
-        ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
+
+        .focused-link {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
-        
-        li {
-            margin: 0.5rem 0;
+
+        .focused-link:hover {
+            background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .scenario {
+                padding: 25px;
+            }
+
+            .scenario-header {
+                font-size: 1.4rem;
+            }
+
+            .mission-patch {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Find Your Research Database</h1>
-            <p class="subtitle">Stop Googling. Start searching like a researcher.</p>
-        </header>
+        <div class="mission-patch">🌌</div>
+        <h1>Database Mission Control</h1>
+        <p class="subtitle">Don't miss a thing. Find the right database for your research journey.</p>
 
-        <h2>Which scenario describes your needs?</h2>
-
-        <div class="scenario-card">
-            <div class="scenario-title">📄 Scenario 1: You need to find one or two articles fast</div>
-            <p>Quick and broad search across biomedical literature.</p>
-            <a href="https://pubmed-ncbi-nlm-nih-gov.myaccess.library.utoronto.ca/?otool=icautilib" class="database-link" target="_blank">Go to PubMed →</a>
-        </div>
-
-        <div class="scenario-card">
-            <div class="scenario-title">🎯 Scenario 2: You need discipline-specific journals without the noise</div>
-            <p>Search within your field for more relevant, focused results.</p>
-            <div class="database-options">
-                <div class="database-item">
-                    <strong>Exercise Science:</strong> 
-                    <a href="https://guides.library.utoronto.ca/sportdiscus" class="database-link" target="_blank">SportDiscus →</a>
-                </div>
-                <div class="database-item">
-                    <strong>Nursing:</strong> 
-                    <a href="https://guides.library.utoronto.ca/cinahl" class="database-link" target="_blank">CINAHL →</a>
-                </div>
-                <div class="database-item">
-                    <strong>Psychology:</strong> 
-                    <a href="https://guides.library.utoronto.ca/c.php?g=250702&p=1671260" class="database-link" target="_blank">APA PsycINFO →</a>
-                </div>
+        <div class="scenario">
+            <div class="scenario-header">
+                <span class="emoji">⚡</span>
+                <span>Quick Launch: Need answers NOW</span>
             </div>
+            <p class="scenario-description">
+                Fast and broad. Perfect when you just need to find a couple of articles without overthinking it.
+            </p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/" class="database-link quick-link">Blast off to PubMed</a>
         </div>
 
-        <div class="scenario-card">
-            <div class="scenario-title">📚 Scenario 3: You're doing a systematic review</div>
-            <p>Start building your search strategy with comprehensive, controlled searching.</p>
-            <div class="database-options">
-                <div class="database-item">
-                    <strong>Start here:</strong> 
-                    <a href="https://guides.library.utoronto.ca/medline" class="database-link" target="_blank">Ovid Medline →</a>
-                    <span style="color: var(--secondary); font-size: 0.9rem;">(Best for systematic reviews and advanced control)</span>
-                </div>
-                <div class="database-item">
-                    <strong>When translating your search, also use:</strong><br>
-                    <a href="https://guides.library.utoronto.ca/embase" class="database-link" target="_blank">Ovid Embase →</a>
-                    <a href="https://guides.library.utoronto.ca/cochrane" class="database-link" target="_blank">Cochrane CENTRAL →</a>
-                </div>
-                <div class="database-item" style="margin-top: 1rem;">
-                    <em>Learn more about <a href="https://guides.library.utoronto.ca/comprehensivesearching" target="_blank" style="color: var(--accent);">comprehensive searching strategies</a></em>
-                </div>
+        <div class="scenario">
+            <div class="scenario-header">
+                <span class="emoji">🎯</span>
+                <span>Focused Mission: Stay in your lane</span>
             </div>
+            <p class="scenario-description">
+                Cut through the noise. Search databases designed specifically for your field so you're not wading through irrelevant stuff.
+            </p>
+            <a href="#" class="database-link focused-link">CINAHL (Nursing)</a>
+            <a href="#" class="database-link focused-link">PsycINFO (Psychology)</a>
+            <a href="#" class="database-link focused-link">SportDiscus (Exercise Science)</a>
         </div>
 
-        <div class="search-guide">
-            <h2 style="margin-top: 0;">How to Actually Search a Database</h2>
+        <div class="scenario">
+            <div class="scenario-header">
+                <span class="emoji">🚀</span>
+                <span>Deep Space Mission: Leave no stone unturned</span>
+            </div>
+            <p class="scenario-description">
+                Going for comprehensive coverage? Worried you'll miss something important? This is your mission control.
+            </p>
             
             <div class="warning">
-                <strong>⚠️ Stop right there!</strong> Don't type full sentences like you're talking to Google. Database searches work differently.
+                <strong>⚠️ Mission briefing:</strong> Start with Ovid Medline. It's your command center for building a solid, comprehensive search strategy with maximum control.
             </div>
-
-            <h3>The Boolean Basics</h3>
-            <p>Use these three operators to combine your keywords:</p>
             
-            <ul>
-                <li><span class="operator">AND</span> narrows your search by requiring ALL terms to be present<br>
-                    <div class="example">diabetes AND exercise</div>
-                    <em>Returns only articles that discuss both diabetes and exercise</em>
-                </li>
-                
-                <li><span class="operator">OR</span> broadens your search by finding ANY of your terms<br>
-                    <div class="example">adolescent OR teenager OR youth</div>
-                    <em>Returns articles that mention any of these terms (useful for synonyms!)</em>
-                </li>
-                
-                <li><span class="operator">NOT</span> excludes terms you don't want<br>
-                    <div class="example">cancer NOT lung</div>
-                    <em>Returns cancer articles but excludes anything about lung cancer</em>
-                </li>
-            </ul>
-
-            <div class="template-box">
-                <h3>🎯 Copy This Template and Fill in Your Terms</h3>
-                <div class="copy-template">
-                    (main concept) AND (second concept)<br><br>
-                    
-                    Example:<br>
-                    (depression OR anxiety) AND (exercise OR "physical activity")
-                </div>
-                <p style="margin-top: 1rem;"><strong>Pro tip:</strong> Use quotes around phrases like "physical activity" to search them as a single term.</p>
-            </div>
-
-            <h3>Quick Tips for Better Results</h3>
-            <ul>
-                <li><strong>Think in concepts:</strong> Break your research question into 2-3 main concepts</li>
-                <li><strong>Use synonyms:</strong> Connect similar terms with OR (therapy OR treatment OR intervention)</li>
-                <li><strong>Keep it simple:</strong> Start with a basic search, then refine based on what you find</li>
-                <li><strong>Fewer is better:</strong> 2-4 well-chosen keywords usually work better than 10</li>
-            </ul>
+            <a href="#" class="database-link blast-off">Launch Ovid Medline</a>
+            
+            <p class="note">
+                <strong>🛸 Pro tip:</strong> Each database has different coverage and indexing. To really make sure you're not missing anything, translate your search to these too:
+            </p>
+            <a href="#" class="database-link blast-off">Ovid Embase</a>
+            <a href="#" class="database-link blast-off">Cochrane CENTRAL</a>
+            
+            <p class="note">
+                💫 Think of it like exploring different planets - each database reveals different studies. Using multiple sources = maximum discovery potential.
+            </p>
         </div>
-
-        <footer>
-            <p>Need more help? Contact your library or check out the <a href="https://guides.library.utoronto.ca/comprehensivesearching" style="color: var(--accent);">comprehensive searching guide</a>.</p>
-        </footer>
     </div>
 </body>
 </html>
