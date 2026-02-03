@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Research Database</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4d2e;
+            --secondary: #2d6a4f;
+            --accent: #c17c00;
+            --bg: #faf9f6;
+            --text: #2b2b2b;
+            --card: #ffffff;
+            --border: #d4d1c6;
+            --highlight: #fff8e7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 400;
+        }
+        
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 2.5rem 0 1.5rem;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+        
+        .scenario-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease-out backwards;
+        }
+        
+        .scenario-card:nth-child(1) { animation-delay: 0.1s; }
+        .scenario-card:nth-child(2) { animation-delay: 0.2s; }
+        .scenario-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .scenario-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(193, 124, 0, 0.15);
+            transform: translateX(4px);
+        }
+        
+        .scenario-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .database-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: all 0.2s ease;
+        }
+        
+        .database-link:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(193, 124, 0, 0.3);
+        }
+        
+        .database-options {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .database-item {
+            margin: 0.5rem 0;
+        }
+        
+        .database-item strong {
+            color: var(--secondary);
+        }
+        
+        .search-guide {
+            background: var(--highlight);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .operator {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0 0.2rem;
+        }
+        
+        .example {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--secondary);
+        }
+        
+        .warning {
+            background: #fff4e6;
+            border-left: 4px solid #d97706;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .warning strong {
+            color: #d97706;
+        }
+        
+        .template-box {
+            background: var(--card);
+            border: 2px dashed var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .template-box h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+        
+        .copy-template {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Find Your Research Database</h1>
+            <p class="subtitle">Stop Googling. Start searching like a researcher.</p>
+        </header>
+
+        <h2>Which scenario describes your needs?</h2>
+
+        <div class="scenario-card">
+            <div class="scenario-title">📄 Scenario 1: You need to find one or two articles fast</div>
+            <p>Quick and broad search across biomedical literature.</p>
+            <a href="https://pubmed-ncbi-nlm-nih-gov.myaccess.library.utoronto.ca/?otool=icautilib" class="database-link" target="_blank">Go to PubMed →</a>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">🎯 Scenario 2: You need discipline-specific journals without the noise</div>
+            <p>Search within your field for more relevant, focused results.</p>
+            <div class="database-options">
+                <div class="database-item">
+                    <strong>Exercise Science:</strong> 
+                    <a href="https://guides.library.utoronto.ca/sportdiscus" class="database-link" target="_blank">SportDiscus →</a>
+                </div>
+                <div class="database-item">
+                    <strong>Nursing:</strong> 
+                    <a href="https://guides.library.utoronto.ca/cinahl" class="database-link" target="_blank">CINAHL →</a>
+                </div>
+                <div class="database-item">
+                    <strong>Psychology:</strong> 
+                    <a href="https://guides.library.utoronto.ca/c.php?g=250702&p=1671260" class="database-link" target="_blank">APA PsycINFO →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">📚 Scenario 3: You're doing a systematic review</div>
+            <p>Start building your search strategy with comprehensive, controlled searching.</p>
+            <div class="database-options">
+                <div class="database-item">
+                    <strong>Start here:</strong> 
+                    <a href="https://guides.library.utoronto.ca/medline" class="database-link" target="_blank">Ovid Medline →</a>
+                    <span style="color: var(--secondary); font-size: 0.9rem;">(Best for systematic reviews and advanced control)</span>
+                </div>
+                <div class="database-item">
+                    <strong>When translating your search, also use:</strong><br>
+                    <a href="https://guides.library.utoronto.ca/embase" class="database-link" target="_blank">Ovid Embase →</a>
+                    <a href="https://guides.library.utoronto.ca/cochrane" class="database-link" target="_blank">Cochrane CENTRAL →</a>
+                </div>
+                <div class="database-item" style="margin-top: 1rem;">
+                    <em>Learn more about <a href="https://guides.library.utoronto.ca/comprehensivesearching" target="_blank" style="color: var(--accent);">comprehensive searching strategies</a></em>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-guide">
+            <h2 style="margin-top: 0;">How to Actually Search a Database</h2>
+            
+            <div class="warning">
+                <strong>⚠️ Stop right there!</strong> Don't type full sentences like you're talking to Google. Database searches work differently.
+            </div>
+
+            <h3>The Boolean Basics</h3>
+            <p>Use these three operators to combine your keywords:</p>
+            
+            <ul>
+                <li><span class="operator">AND</span> narrows your search by requiring ALL terms to be present<br>
+                    <div class="example">diabetes AND exercise</div>
+                    <em>Returns only articles that discuss both diabetes and exercise</em>
+                </li>
+                
+                <li><span class="operator">OR</span> broadens your search by finding ANY of your terms<br>
+                    <div class="example">adolescent OR teenager OR youth</div>
+                    <em>Returns articles that mention any of these terms (useful for synonyms!)</em>
+                </li>
+                
+                <li><span class="operator">NOT</span> excludes terms you don't want<br>
+                    <div class="example">cancer NOT lung</div>
+                    <em>Returns cancer articles but excludes anything about lung cancer</em>
+                </li>
+            </ul>
+
+            <div class="template-box">
+                <h3>🎯 Copy This Template and Fill in Your Terms</h3>
+                <div class="copy-template">
+                    (main concept) AND (second concept)<br><br>
+                    
+                    Example:<br>
+                    (depression OR anxiety) AND (exercise OR "physical activity")
+                </div>
+                <p style="margin-top: 1rem;"><strong>Pro tip:</strong> Use quotes around phrases like "physical activity" to search them as a single term.</p>
+            </div>
+
+            <h3>Quick Tips for Better Results</h3>
+            <ul>
+                <li><strong>Think in concepts:</strong> Break your research question into 2-3 main concepts</li>
+                <li><strong>Use synonyms:</strong> Connect similar terms with OR (therapy OR treatment OR intervention)</li>
+                <li><strong>Keep it simple:</strong> Start with a basic search, then refine based on what you find</li>
+                <li><strong>Fewer is better:</strong> 2-4 well-chosen keywords usually work better than 10</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Need more help? Contact your library or check out the <a href="https://guides.library.utoronto.ca/comprehensivesearching" style="color: var(--accent);">comprehensive searching guide</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
